@@ -1,5 +1,5 @@
 .postViewer {
-	height: 600px;
+	height: 500px;
 	overflow: auto;
 	background: #feaefe;
 }
@@ -9,4 +9,9 @@
 	background: #1435f3;
 	position: fixed;
 	bottom:0;
+}
+
+.footerSubmit {
+	margin-top: 10px;
+	margin-left: 10px;
 }
