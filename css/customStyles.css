@@ -1,10 +1,12 @@
 .postViewer {
-	height: 200px;
+	height: 600px;
 	overflow: auto;
 	background: #feaefe;
 }
 
 .newPost {
-	height: 100px;
+	height: 200px;
 	background: #1435f3;
+	position: fixed;
+	bottom:0;
 }
