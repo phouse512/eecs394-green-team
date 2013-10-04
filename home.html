@@ -20,32 +20,33 @@
         <div class="row">
             <div class="col-xs-12 newPost">
 				<div class="row">
+					<form method="POST" action="script/insertPost.php">
 					<div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-						<textarea class="form-control footerTextSubmit" rows="2" placeholder="Type your text"></textarea>
+						<textarea class="form-control footerTextSubmit" rows="2" placeholder="Type your text" name="commentTxt"></textarea>
 					</div>
 					<div class="col-lg-4">
 						<label class="radio-inline">
-                            <input type="radio" name="color" class="btn btn-primary" value = "Black" checked>
+                            <input type="radio" name="color" value = "1" checked>
                                     Black
                             </label>
                         <label class="radio-inline">
-                            <input type="radio" name="color" class="btn btn-primary" value = "Blue">
+                            <input type="radio" name="color" value = "2">
                                     Blue
                             </label>
                         <label class="radio-inline">
-                            <input type="radio" name="color" class="btn btn-primary" value = "Red">
+                            <input type="radio" name="color" value = "3">
                                     Red
                             </label>
                         <label class="radio-inline">
-                            <input type="radio" name="color" class="btn btn-primary" value = "Green">
+                            <input type="radio" name="color" value = "4">
                                     Green
                             </label>
 					</div>
 					<div class="col-lg-4">
-						<button type="button" class="footerSubmit btn btn-primary btn-lg" onclick="viewPosts()">Submit</button>
+						<input type="submit" class="footerSubmit btn btn-primary btn-lg"></button>
 					</div>
 
-					
+				</form>
 				</div>
             </div>
         </div>
