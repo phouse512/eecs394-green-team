@@ -6,14 +6,15 @@
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/customStyles.css" rel="stylesheet" media="screen">
-        <script src="//code.jquery.com/jquery.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/source.js"></script>
     </head>
     <body>
         <div class="row">
             <div class="col-xs-12 postViewer">
-
+                <div id="noteSpace">
+                </div>
             </div>
         </div>
         <div class="row">
@@ -31,7 +32,7 @@
 						</form>
 					</div>
 					<div class="col-lg-4">
-						<button type="button" class="footerSubmit btn btn-primary btn-lg">Submit</button>
+						<button type="button" class="footerSubmit btn btn-primary btn-lg" onclick="viewPosts()">Submit</button>
 					</div>
 
 					

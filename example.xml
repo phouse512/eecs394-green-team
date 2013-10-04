@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--EXAMPLE XML CORRESPONDING TO STARTER DATABASE-->
+<posts>
+	<post>
+		<postid>Victor</postid>
+		<posttext>Let's meet in 270 today!</posttext>
+		<color>3</color>
+	</post>
+	<post>
+		<postid>Victor</postid>
+		<posttext>When's the demo?</posttext>
+		<color>2</color>
+	</post>
+	<post>
+		<postid>Victor</postid>
+		<posttext>Let's meet in 270 today!</posttext>
+		<color>3</color>
+	</post>
+	<post>
+		<postid>Victor</postid>
+		<posttext>When's the demo?</posttext>
+		<color>2</color>
+	</post>
+</posts>

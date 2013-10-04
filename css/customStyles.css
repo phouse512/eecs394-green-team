@@ -1,17 +1,28 @@
 .postViewer {
-	height: 500px;
+	height: 600px;
 	overflow: auto;
 	background: #feaefe;
 }
 
 .newPost {
-	height: 200px;
+	height: 100px;
 	background: #1435f3;
 	position: fixed;
-	bottom:0;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
 }
 
 .footerSubmit {
 	margin-top: 10px;
 	margin-left: 10px;
+}
+
+.postNote {
+	height: 200px;
+	border: 2px solid #000000;
+}
+
+#noteSpace {
+	height: 100%;
 }

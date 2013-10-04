@@ -13,8 +13,9 @@ function createPost(postText, postColor) {
 	});
 }
 
+
 function viewPosts(){
-	$.ajax({
+	/*$.ajax({
 		url: 'script/viewAllPosts.php',
 		type: 'GET',
 		success: function(data, textStatus, xhr) {
@@ -24,4 +25,22 @@ function viewPosts(){
 			alert(textStatus);
 		} 
 	});
+		*/
+	$.ajax({
+		url: 'example.xml',
+		type: 'GET',
+		dataType: 'xml',
+		success: function(data, textStatus, xhr) {
+			$(data).find('post').each(function(){
+				var text = $(this).find('posttext').text();
+				$('#noteSpace').append('<div class="col-xs-4 postNote">' + text + '</div>');
+			});
+			//var total = $('*', data).length;
+			//console.log(total);
+		},
+		error: function(xhr, textStatus, errorThrown) {
+			alert("Could not retrieve XML")
+		}
+	})
+	
 }
