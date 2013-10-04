@@ -21,15 +21,25 @@
             <div class="col-xs-12 newPost">
 				<div class="row">
 					<div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-						<textarea class="form-control footerSubmit" rows="3"></textarea>
+						<textarea class="form-control footerTextSubmit" rows="2" placeholder="Type your text"></textarea>
 					</div>
 					<div class="col-lg-4">
-						<form>
-							<input type="radio" name="color" value="black" checked>Black
-							<input type="radio" name="color" value="red">Red<br>
-							<input type="radio" name="color" value="green">Green
-							<input type="radio" name="color" value="blue">Blue<br>
-						</form>
+						<label class="radio-inline">
+                            <input type="radio" name="color" class="btn btn-primary" value = "Black" checked>
+                                    Black
+                            </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="color" class="btn btn-primary" value = "Blue">
+                                    Blue
+                            </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="color" class="btn btn-primary" value = "Red">
+                                    Red
+                            </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="color" class="btn btn-primary" value = "Green">
+                                    Green
+                            </label>
 					</div>
 					<div class="col-lg-4">
 						<button type="button" class="footerSubmit btn btn-primary btn-lg" onclick="viewPosts()">Submit</button>
