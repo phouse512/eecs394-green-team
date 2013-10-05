@@ -31,6 +31,26 @@ body{
 	border: 2px solid #000000;
 }
 
+.blackNote {
+	background: #000;
+	color: #c6d3cd;
+}
+
+.blueNote {
+	background: #5089E0;
+	color: #000;
+}
+
+.redNote {
+	background: #FF495C;
+	color: #fff;
+}
+
+.greenNote {
+	background: #00B327;
+	color: #fff;
+}
+
 #noteSpace {
 	height: 100%;
 }

@@ -2,23 +2,23 @@
 <!--EXAMPLE XML CORRESPONDING TO STARTER DATABASE-->
 <posts>
 	<post>
-		<postid>Victor</postid>
-		<posttext>Let's meet in 270 today!</posttext>
-		<color>3</color>
+		<post_id>Victor</post_id>
+		<post_text>Let's meet in 270 today!</post_text>
+		<post_color>0</post_color>
 	</post>
 	<post>
-		<postid>Victor</postid>
-		<posttext>When's the demo?</posttext>
-		<color>2</color>
+		<post_id>Victor</post_id>
+		<post_text>When's the demo?</post_text>
+		<post_color>1</post_color>
 	</post>
 	<post>
-		<postid>Victor</postid>
-		<posttext>Let's meet in 270 today!</posttext>
-		<color>3</color>
+		<post_id>Victor</post_id>
+		<post_text>Let's meet in 270 today!</post_text>
+		<post_color>3</post_color>
 	</post>
 	<post>
-		<postid>Victor</postid>
-		<posttext>When's the demo?</posttext>
-		<color>2</color>
+		<post_id>Victor</post_id>
+		<post_text>When's the demo?</post_text>
+		<post_color>2</post_color>
 	</post>
 </posts>
