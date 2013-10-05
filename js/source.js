@@ -27,13 +27,13 @@ function viewPosts(){
 	});
 		*/
 	$.ajax({
-		url: 'example.xml',
+		url: 'script/viewAllPosts.php',
 		type: 'GET',
 		dataType: 'xml',
 		success: function(data, textStatus, xhr) {
 			$(data).find('post').each(function(){
-				var text = $(this).find('posttext').text();
-				$('#noteSpace').append('<div class="col-xs-4 postNote">' + text + '</div>');
+				var text = $(this).find('post_text').text();
+				$('#noteSpace').append('<div class="col-xs-3 postNote">' + text + '</div>');
 			});
 			//var total = $('*', data).length;
 			//console.log(total);
