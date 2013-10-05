@@ -4,16 +4,22 @@
 	$hostname = "localhost"; 
 	$database_name = "victorab_325p1";
 
-	$post_text = $_POST['postText'];
-	$post_color = $_POST['postColor'];
+	$conn = mysqli_connect($hostname, $username, $password, $database_name);
+	
+	// Check connection
+	if (mysqli_connect_errno())
+	  {
+	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	  }
+	  
+	  $sql="INSERT INTO posts (post_id, post_text, post_color) VALUES('$_POST[1]','$_POST[commentTxt]','$_POST[color]')";
+	  
+	  if (!mysqli_query($conn,$sql))
+	    {
+	    die('Error: ' . mysqli_error($conn));
+	    }
 
-	$connection = mysqli_connect($hostname, $username, $password, $database_name);
-
-	$query = "INSERT INTO posts (post_text, post_color) VALUES ('" . $post_text . "', '". $post_color . "')";
-
-	if ($results = mysqli_query($connection, $query)){
-		echo "success";
-	} else {
-		echo "fail";
-	}
+	  mysqli_close($conn);
+	  
+	  header('location: ../home.html');
 ?>
