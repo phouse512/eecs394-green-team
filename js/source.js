@@ -50,6 +50,7 @@ function viewPosts(){
 		success: function(data, textStatus, xhr) {
 			$(data).find('post').each(function(){
 				var text = $(this).find('post_text').text();
+				var color_class = $(this).find('post_color').text();
 				if(color_class.localeCompare("0") == 0){
 					$('#noteSpace').append('<div class="col-xs-3 postNote blackNote">' + text + '</div>');
 				} else if(color_class.localeCompare("1") == 0){
