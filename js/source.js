@@ -52,13 +52,13 @@ function viewPosts(){
 				var text = $(this).find('post_text').text();
 				var color_class = $(this).find('post_color').text();
 				if(color_class.localeCompare("0") == 0){
-					$('#noteSpace').append('<div class="col-xs-3 postNote blackNote">' + text + '</div>');
+					$('#noteSpace').append('<div class="col-xs-12 col-lg-3 postNote blackNote">' + text + '</div>');
 				} else if(color_class.localeCompare("1") == 0){
-					$('#noteSpace').append('<div class="col-xs-3 postNote blueNote">' + text + '</div>');
+					$('#noteSpace').append('<div class="col-xs-12 col-lg-3 postNote blueNote">' + text + '</div>');
 				} else if(color_class.localeCompare("2") == 0){
-					$('#noteSpace').append('<div class="col-xs-3 postNote redNote">' + text + '</div>');
+					$('#noteSpace').append('<div class="col-xs-12 col-lg-3 postNote redNote">' + text + '</div>');
 				} else if(color_class.localeCompare("3") == 0){
-					$('#noteSpace').append('<div class="col-xs-3 postNote greenNote">' + text + '</div>');
+					$('#noteSpace').append('<div class="col-xs-12 col-lg-3 postNote greenNote">' + text + '</div>');
 				}
 			});
 			//var total = $('*', data).length;
