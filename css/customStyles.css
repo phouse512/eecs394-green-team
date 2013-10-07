@@ -42,6 +42,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 	height: 200px;
 	border: 2px solid #000000;
 	margin: 10px;
+	font-size: 16px;
 }
 
 .blackNote {
@@ -51,7 +52,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 
 .blueNote {
 	background: #5089E0;
-	color: #000;
+	color: #fff;
 }
 
 .redNote {
