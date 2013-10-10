@@ -1,8 +1,8 @@
 <?php
-	$username = "root";
-	$password = "root";
+	$username = "victorab_325p1";
+	$password = "teamGreen!";
 	$hostname = "localhost"; 
-	$database_name = "eecs394_test";
+	$database_name = "victorab_325p1";
 
 	$connection = mysqli_connect($hostname, $username, $password, $database_name);
 
