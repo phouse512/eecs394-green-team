@@ -1,11 +1,27 @@
 <?php
-	$username = "victorab_325p1";
-	$password = "teamGreen!";
+	$username = "root";
+	$password = "root";
 	$hostname = "localhost"; 
-	$database_name = "victorab_325p1";
+	$database_name = "eecs394_test";
 
 	$conn = mysqli_connect($hostname, $username, $password, $database_name);
+
+	$post_text = $_POST['postText'];
+	$post_color = $_POST['postColor'];
+	$poster = $_POST['poster'];
 	
+
+	$sql = "INSERT INTO posts (post_text, post_color, poster) VALUES('" . $post_text . "', '" . $post_color . "', '" . $poster . "')";
+	if(mysqli_query($conn, $sql)){
+		echo "success";
+	} else {
+		echo "fail";
+	}
+
+
+
+/*
+
 	// Check connection
 	if (mysqli_connect_errno())
 	  {
@@ -22,4 +38,8 @@
 	  mysqli_close($conn);
 	  
 	  header('location: ../home.html');
+?>
+
+*/ 
+
 ?>

@@ -1,12 +1,12 @@
 <?php
-	$username = "victorab_325p1";
-	$password = "teamGreen!";
+	$username = "root";
+	$password = "root";
 	$hostname = "localhost"; 
-	$database_name = "victorab_325p1";
+	$database_name = "eecs394_test";
 
 	$connection = mysqli_connect($hostname, $username, $password, $database_name);
 
-	$query = "SELECT post_id, post_text, post_color FROM posts ORDER BY post_id DESC";
+	$query = "SELECT post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime FROM posts ORDER BY post_id DESC";
 
 	$results = mysqli_query($connection, $query);
 
@@ -31,6 +31,14 @@
 
 		$xml->startElement('post_color');
 		$xml->writeRaw($row['post_color']);
+		$xml->endElement();
+
+		$xml->startElement('poster');
+		$xml->writeRaw($row['poster']);
+		$xml->endElement();
+
+		$xml->startElement('timestamp');
+		$xml->writeRaw($row['TheTime']);
 		$xml->endElement();
 
 		$xml->endElement();
