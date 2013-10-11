@@ -20,6 +20,18 @@ function createPost(postText, postColor, poster) {
 	});
 }
 
+
+/*function deletePost(postText, postColor, poster) {
+    $.ajax({
+        url: 'script/deletePost.php',
+        type: 'DELETE'
+        data: ({postText: postText,
+				postColor: postColor,
+				poster: poster}),
+        });
+}
+*/
+
 function clearModal(){
 	$("#myModal").modal('hide');
 	$("#poster").val("");
@@ -77,13 +89,13 @@ function viewPosts(){
 				var poster = $(this).find('poster').text();
 				var timestamp = $(this).find('timestamp').text();
 				if(color_class.localeCompare("0") == 0){
-					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blackNote">' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blackNote"><form action="script/deletePost.php" method="get"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button></form>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
 				} else if(color_class.localeCompare("1") == 0){
-					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blueNote">' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blueNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
 				} else if(color_class.localeCompare("2") == 0){
-					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote redNote">' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote redNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
 				} else if(color_class.localeCompare("3") == 0){
-					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote greenNote">' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote greenNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
 				}
 			});
 			$("#noteSpace").html(outputHTML);

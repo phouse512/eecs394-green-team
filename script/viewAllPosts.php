@@ -6,7 +6,7 @@
 
 	$connection = mysqli_connect($hostname, $username, $password, $database_name);
 
-	$query = "SELECT post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime FROM posts ORDER BY post_id DESC";
+	$query = "SELECT post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime, Archived FROM posts WHERE Archived='0' ORDER BY post_id DESC";
 
 	$results = mysqli_query($connection, $query);
 
