@@ -4,13 +4,11 @@
 	$hostname = "localhost"; 
 	$database_name = "victorab_325p1";
 
-	$conn = mysqli_connect($hostname, $username, $password, $database_name);
+	$delete_id = $_POST['post_id'];
 
-	$post_text = $_DELETE['postText'];
-	$post_color = $_DELETE['postColor'];
-	$poster = $_DELETE['poster'];
+	$conn = mysqli_connect($hostname, $username, $password, $database_name);
 	
-	$sql = "UPDATE posts SET Archived='1';
+	$sql = "UPDATE posts SET Archived='1' WHERE post_id='" . $delete_id . "'";
 	
 	if(mysqli_query($conn, $sql)){
 		echo "success";

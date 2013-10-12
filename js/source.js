@@ -20,17 +20,22 @@ function createPost(postText, postColor, poster) {
 	});
 }
 
-
-/*function deletePost(postText, postColor, poster) {
+function deletePost(postID) {
     $.ajax({
         url: 'script/deletePost.php',
-        type: 'DELETE'
-        data: ({postText: postText,
-				postColor: postColor,
-				poster: poster}),
-        });
+        type: 'POST',
+        data: ({post_id: postID}),
+        success: function(data, textStatus, xhr) {
+        	if (data == "success"){
+        		console.log(data);
+        		viewPosts();
+        	} else {
+        		console.log(data);
+        	}
+        }
+    });
 }
-*/
+
 
 function clearModal(){
 	$("#myModal").modal('hide');
@@ -48,34 +53,7 @@ function saveNewPost(){
 }
 
 function viewPosts(){
-	//test with example.xml off-server
-	/*
-	$.ajax({
-		url: 'example.xml',
-		type: 'GET',
-		success: function(data, textStatus, xhr) {
-			$(data).find('post').each(function(index){
-				var text = $(this).find('post_text').text();
-				var color_class = $(this).find('post_color').text();
-				if(color_class.localeCompare("0") == 0){
-					$('#noteSpace').append('<div class="col-xs-3 postNote blackNote">' + text + '</div>');
-				} else if(color_class.localeCompare("1") == 0){
-					$('#noteSpace').append('<div class="col-xs-3 postNote blueNote">' + text + '</div>');
-				} else if(color_class.localeCompare("2") == 0){
-					$('#noteSpace').append('<div class="col-xs-3 postNote redNote">' + text + '</div>');
-				} else if(color_class.localeCompare("3") == 0){
-					$('#noteSpace').append('<div class="col-xs-3 postNote greenNote">' + text + '</div>');
-				}
-			});
-			//var total = $('*', data).length;
-			//console.log(total);
-		}, 
-		error: function(xhr, textStatus, errorThrown){
-			alert(textStatus);
-		} 
-	});*/
-		
-		
+	$("#noteSpace").off("click");
 	$.ajax({
 		url: 'script/viewAllPosts.php',
 		type: 'GET',
@@ -88,17 +66,22 @@ function viewPosts(){
 				var color_class = $(this).find('post_color').text();
 				var poster = $(this).find('poster').text();
 				var timestamp = $(this).find('timestamp').text();
+				var post_id = $(this).find('post_id').text();
 				if(color_class.localeCompare("0") == 0){
-					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blackNote"><form action="script/deletePost.php" method="get"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button></form>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blackNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
 				} else if(color_class.localeCompare("1") == 0){
-					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blueNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div id="' + post_id + '" class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blueNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
 				} else if(color_class.localeCompare("2") == 0){
-					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote redNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div id="' + post_id + '" class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote redNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
 				} else if(color_class.localeCompare("3") == 0){
-					outputHTML += '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote greenNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div id="' + post_id + '" class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote greenNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<hr class="hr-bottom"><div class="row noteFoot"><div class="col-lg-12"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
 				}
 			});
 			$("#noteSpace").html(outputHTML);
+
+			$("#noteSpace").on("click", ".close", function(event) {
+				deletePost($(this).parent().parent().attr("id"));
+			});
 		},
 		error: function(xhr, textStatus, errorThrown) {
 			alert("Could not retrieve XML")
