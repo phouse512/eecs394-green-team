@@ -1,13 +1,13 @@
 <?php
-/*
 	$username = "victorab_325p1";
 	$password = "teamGreen!";
 	$hostname = "localhost"; 
-	$database_name = "victorab_325p1";*/
+	$database_name = "victorab_325p1";
+	/*
 	$username = "root";
-	$password = "ruggedpizzaharpies";
+	$password = "root";
 	$hostname = "localhost";
-	$database_name = "394_test";
+	$database_name = "eecs394_test"; */
 
 	$conn = mysqli_connect($hostname, $username, $password, $database_name);
 

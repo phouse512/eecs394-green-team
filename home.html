@@ -17,9 +17,9 @@
                     saveNewPost();
                 });
 
-                $("#sortSubmit").on("click", function(){
+                $("#sortSelectors").change(function () {
                     viewPosts();
-                });
+                })
             });
 
 		</script>
@@ -51,7 +51,6 @@
                     <div class="sortSelect">
                         <input type="checkbox" name="selectGreen" value="3" checked> Green
                     </div>
-                    <button id="sortSubmit" type="button" class="btn btn-default">Sort!</button>
                 </div>
             </div>
         </div>

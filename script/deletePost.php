@@ -1,13 +1,15 @@
 <?php
-/*
+
 	$username = "victorab_325p1";
 	$password = "teamGreen!";
 	$hostname = "localhost"; 
-	$database_name = "victorab_325p1";*/
+	$database_name = "victorab_325p1";
+
+	/*
 	$username = "root";
-	$password = "ruggedpizzaharpies";
+	$password = "root";
 	$hostname = "localhost";
-	$database_name = "394_test";
+	$database_name = "eecs394_test"; */
 
 	$delete_id = $_POST['post_id'];
 
