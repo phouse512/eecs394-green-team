@@ -29,15 +29,38 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 	color: white;
 }
 
+#sortSelectors {
+	color: #fff;
+	position: relative;
+	top: 25%;
+}
+
+.sortSelect{
+	padding-left:5px;
+	padding-right:5px;
+	width:20%;
+	float: left;
+}
+
+#sortSubmit{
+	width:20%;
+}
+
 .hr-bottom {
-	margin-top: 135px;
+	margin-top: 0px;
 	margin-bottom: -5px;
 }
 
 .noteFooter {
 	padding-top: 10px;
 	padding-bottom: 5px;
+}
 
+.noteFoot {
+	position: absolute;
+	top: 82%;
+	left: 5.8608%;
+	right: 5.8608%;
 }
 
 .footerSubmit {
@@ -51,6 +74,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 .postNote {
 	height: 200px;
+	position: relative;
 	border: 2px solid #000000;
 	font-size: 16px;
 	margin-top: 20px;

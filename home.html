@@ -14,7 +14,11 @@
                 viewPosts();
 
                 $("#createPost").on("click", function(){
-                    saveNewPost()
+                    saveNewPost();
+                });
+
+                $("#sortSubmit").on("click", function(){
+                    viewPosts();
                 });
             });
 
@@ -31,9 +35,24 @@
         </div>
         <div class="row">
             <div class="col-xs-12 newPost">
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg footerSubmit">New Note</a>
 				</div>
+                <div class="col-lg-4" id="sortSelectors">
+                    <div class="sortSelect">
+                        <input type="checkbox" name="selectBlack" value="0" checked> Black
+                    </div>
+                    <div class="sortSelect">
+                        <input type="checkbox" name="selectBlue" value="1" checked> Blue
+                    </div>
+                    <div class="sortSelect">
+                        <input type="checkbox" name="selectRed" value="2" checked> Red
+                    </div>
+                    <div class="sortSelect">
+                        <input type="checkbox" name="selectGreen" value="3" checked> Green
+                    </div>
+                    <button id="sortSubmit" type="button" class="btn btn-default">Sort!</button>
+                </div>
             </div>
         </div>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

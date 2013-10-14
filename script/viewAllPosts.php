@@ -1,12 +1,19 @@
 <?php
-	$username = "victorab_325p1";
+	/*$username = "victorab_325p1";
 	$password = "teamGreen!";
 	$hostname = "localhost"; 
 	$database_name = "victorab_325p1";
+	*/
+	$username = "root";
+	$password = "ruggedpizzaharpies";
+	$hostname = "localhost";
+	$database_name = "394_test";
 
 	$connection = mysqli_connect($hostname, $username, $password, $database_name);
 
-	$query = "SELECT post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime, Archived FROM posts WHERE Archived='0' ORDER BY post_id DESC";
+	$sortColors = $_POST['sortColors'];
+
+	$query = "SELECT post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime, Archived FROM posts WHERE Archived='0' AND post_color IN " . $sortColors . " ORDER BY post_id DESC";
 
 	$results = mysqli_query($connection, $query);
 
