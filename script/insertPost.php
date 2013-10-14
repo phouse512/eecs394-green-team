@@ -3,7 +3,8 @@
 	$username = "victorab_325p1";
 	$password = "teamGreen!";
 	$hostname = "localhost"; 
-	$database_name = "victorab_325p1";	/*
+	$database_name = "victorab_325p1";	
+	/*
 	$username = "root";
 	$password = "root";
 	$hostname = "localhost";
