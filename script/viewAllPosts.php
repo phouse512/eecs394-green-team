@@ -1,8 +1,8 @@
 <?php
-	$username = "victorab_325p1";
-	$password = "teamGreen!";
+	$username = "Madhu";
+	$password = "Green394";
 	$hostname = "localhost"; 
-	$database_name = "victorab_325p1";
+	$database_name = "394test";
 	/*
 	$username = "root";
 	$password = "root";
