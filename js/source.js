@@ -92,15 +92,13 @@ function viewPosts(){
 }
 
 function sortPosts(){
-	var sortString = "(";
+	var sortString = new Array();
 	$("#sortSelectors input:checked").each(function(){
-		sortString += "\'"; 
-		sortString += $(this).val();
-		sortString += "\'";
+		sortString.push($(this).val());
 	});
 
-	sortString += ")";
-	sortString = sortString.replace(/''/g, "\', \'");
+	sortString = sortString.join(',');
+
 	return sortString;
 }
 

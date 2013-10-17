@@ -12,7 +12,7 @@
 
 	$connection = mysqli_connect($hostname, $username, $password, $database_name);
 
-	$sortColors = $_POST['sortColors'];
+	$sortColors = '(' . $_POST['sortColors'] . ')';
 
 	$query = "SELECT post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime, Archived FROM posts WHERE Archived='0' AND post_color IN " . $sortColors . " ORDER BY post_id DESC";
 
