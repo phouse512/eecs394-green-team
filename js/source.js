@@ -70,13 +70,13 @@ function viewPosts(){
 				var timestamp = $(this).find('timestamp').text();
 				var post_id = $(this).find('post_id').text();
 				if(color_class.localeCompare("0") == 0){
-					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blackNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<div class="row noteFoot"><div class="col-lg-12"><hr class="hr-bottom"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blackNote"><div class="row col-lg-12 noteFoot"><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 noteFooter"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div></div><div class="noteText">' + text + '</div></div></div>';
 				} else if(color_class.localeCompare("1") == 0){
-					outputHTML += '<div id="' + post_id + '" class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blueNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<div class="row noteFoot"><div class="col-lg-12"><hr class="hr-bottom"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blueNote"><div class="row col-lg-12 noteFoot"><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 noteFooter"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div></div><div class="noteText">' + text + '</div></div></div>';
 				} else if(color_class.localeCompare("2") == 0){
-					outputHTML += '<div id="' + post_id + '" class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote redNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<div class="row noteFoot"><div class="col-lg-12"><hr class="hr-bottom"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote redNote"><div class="row col-lg-12 noteFoot"><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 noteFooter"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div></div><div class="noteText">' + text + '</div></div></div>';
 				} else if(color_class.localeCompare("3") == 0){
-					outputHTML += '<div id="' + post_id + '" class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote greenNote"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + text + '<div class="row noteFoot"><div class="col-lg-12"><hr class="hr-bottom"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div></div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote greenNote"><div class="row col-lg-12 noteFoot"><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 noteFooter"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div></div><div class="noteText">' + text + '</div></div></div>';
 				}
 			});
 			$("#noteSpace").html(outputHTML);
@@ -86,7 +86,7 @@ function viewPosts(){
 			});
 		},
 		error: function(xhr, textStatus, errorThrown) {
-			alert("Could not retrieve XML")
+			alert(textStatus + errorThrown);
 		}
 	})
 }

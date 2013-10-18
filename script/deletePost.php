@@ -5,11 +5,6 @@
 	$hostname = "localhost"; 
 	$database_name = "victorab_325p1";
 
-	/*
-	$username = "root";
-	$password = "root";
-	$hostname = "localhost";
-	$database_name = "eecs394_test"; */
 
 	$delete_id = $_POST['post_id'];
 

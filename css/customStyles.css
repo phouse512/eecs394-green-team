@@ -75,17 +75,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 
 .noteFooter {
-	padding-top: 10px;
-	padding-bottom: 5px;
+	padding: 5px 10px 5px 10px;
 	position: relative;
 }
 
 .noteFoot {
-	/*position: absolute;*/
-	top: 82%;
+	position: absolute;
+	top: 0px;
+	bottom: 82%;
 	left: 5.8608%;
 	right: 5.8608%;
+	border-bottom: 1px solid #fff;
+	padding: 0px;
 } 
+
+.noteText {
+	margin-top: 12.5%;
+}
 
 .footerSubmit {
 	margin-top: 10px;
