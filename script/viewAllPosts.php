@@ -10,8 +10,15 @@
 	$connection = mysqli_connect($hostname, $username, $password, $database_name);
 
 	$sortColors = '(' . $_POST['sortColors'] . ')';
+	$sortTags = $_POST['sortTags'];
 
-	$query = "SELECT post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime, Archived FROM posts WHERE Archived='0' AND post_color IN " . $sortColors . " ORDER BY post_id DESC";
+	if($sortTags != ''){
+		$sortTags = $_POST['sortTags'];
+		$sortTags = stripslashes($sortTags);
+		$query = "SELECT posts.post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime, Archived FROM posts INNER JOIN poststotags ON posts.post_id=poststotags.post_id AND tag in (" . $sortTags . ") AND Archived='0' AND post_color IN " . $sortColors . " ORDER BY post_id DESC";
+	} else {
+		$query = "SELECT post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime, Archived FROM posts WHERE Archived='0' AND post_color IN " . $sortColors . " ORDER BY post_id DESC";
+	}
 
 	$results = mysqli_query($connection, $query);
 

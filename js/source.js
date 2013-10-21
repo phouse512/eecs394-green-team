@@ -62,11 +62,15 @@ function saveNewPost(){
 
 function viewPosts(){
 	$("#noteSpace").off("click");
-	var sorter = sortPosts();
+	var sorter = sortColorPosts();
+	var tagString = sortTagPosts();
+
+	console.log(tagString + " " + sorter);
 	$.ajax({
 		url: 'script/viewAllPosts.php',
 		type: 'POST',
-		data: {sortColors: sorter},
+		data: ({sortColors: sorter,
+				sortTags: tagString}),
 		dataType: 'xml',
 		success: function(data, textStatus, xhr) {
 			console.log(data);
@@ -99,7 +103,7 @@ function viewPosts(){
 	})
 }
 
-function sortPosts(){
+function sortColorPosts(){
 	var sortString = new Array();
 	$("#sortSelectors input:checked").each(function(){
 		sortString.push($(this).val());
@@ -108,5 +112,46 @@ function sortPosts(){
 	sortString = sortString.join(',');
 
 	return sortString;
+}
+
+function sortTagPosts(){
+	var sortString = new Array();
+	$("#tagBody input:checked").each(function(){
+		sortString.push("'" + $(this).attr("val") + "'");;
+	});
+
+	sortString = sortString.join(',');
+	return sortString;
+}
+
+
+function getTags(){
+
+	$.ajax({
+		url: 'script/getTags.php',
+		type: 'GET',
+		success: function(data, textStatus, xhr) {
+			displayTags(data);
+		},
+		error: function(xhr, textStatus, errorThrown) {
+			alert(errorThrown);
+		}
+	});
+}
+
+function displayTags(data){
+	var outputHTML = "";
+	$(data).find('tag').each(function() {
+		var tagText = $(this).text();
+		console.log(tagText);
+		outputHTML += '<div class="checkbox"><label><input val="' + tagText + '" type="checkbox">' + tagText + '</label></div>';
+	});
+
+	$("#tagBody").html(outputHTML);
+}
+
+function sortButton(){
+	$("#tagModal").modal('hide');
+	viewPosts();
 }
 
