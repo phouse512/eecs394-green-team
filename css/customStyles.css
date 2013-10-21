@@ -146,3 +146,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 	margin-top: 50px;
 	margin-bottom: 100px;
 }
+
+.tagButton {
+	float: left;
+	margin: 2px;
+}

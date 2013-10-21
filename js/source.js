@@ -1,10 +1,11 @@
-function createPost(postText, postColor, poster) {
+function createPost(postText, postColor, poster, tagArray) {
 	$.ajax({
 		url: 'script/insertPost.php',
 		type: 'POST',
 		data: ({postText: postText,
 				postColor: postColor,
-				poster: poster}),
+				poster: poster,
+				tagArray: tagArray}),
 		success: function(data, textStatus, xhr) {
 			if (data == "success"){
 				viewPosts();
@@ -42,6 +43,8 @@ function clearModal(){
 	$("#poster").val("");
 	$("#noteContent").val("");
 	$("#color-select").val(1);
+	$("#tagSpace").html("");
+	$("#tags").val("");
 }
 
 function saveNewPost(){
@@ -49,7 +52,12 @@ function saveNewPost(){
 	var content = $("#noteContent").val();
 	var color = $("#color-select").val();
 
-	createPost(content, color, poster);
+	var tagArray = new Array();
+	$("#tagSpace .tagButton").each(function() {
+		tagArray.push($(this).html().slice(1));
+	})
+
+	createPost(content, color, poster, tagArray);
 }
 
 function viewPosts(){

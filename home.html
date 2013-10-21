@@ -19,7 +19,24 @@
 
                 $("#sortSelectors").change(function () {
                     viewPosts();
-                })
+                });
+
+                $("#tags").keypress(function(event) {
+                    if(event.keyCode == 13){
+                        var text = '<button class="btn btn-xs tagButton">#' + $("#tags").val() + '</div>';
+                        $("#tagSpace").append(text);
+                        $("#tags").val("");
+                        console.log(text);
+                    }
+                });
+
+                $("#tagSpace").on("click", ".tagButton", function() {
+                    $(this).remove();
+                });
+
+                $("#myModal").on("hidden.bs.modal", function() {
+                    $("#tagSpace").html("");
+                });
             });
 
 		</script>
@@ -72,7 +89,7 @@
                         <div class="form-group">
                             <textarea class="form-control" id="noteContent" rows="3" placeholder="write note here.."></textarea>
                         </div>
-                        <select class="form-control" id="color-select">
+                        <select class="form-control form-group" id="color-select">
                             <option value="0">Black</option>
                             <option value="1">Blue</option>
                             <option value="2">Red</option>
@@ -80,6 +97,8 @@
                         </select>
                         <div class="form-group">
                             <input type="tags" class="form-control" id="tags" placeholder="insert a tag followed by ENTER..">
+                        </div>
+                        <div id="tagSpace">
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -5,6 +5,7 @@
 	$password = "teamGreen!";
 	$hostname = "localhost"; 
 	$database_name = "victorab_325p1";
+	
 
 	$connection = mysqli_connect($hostname, $username, $password, $database_name);
 
