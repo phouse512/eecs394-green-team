@@ -7,7 +7,17 @@
 
 	$conn = mysqli_connect($hostname, $username, $password, $database_name);
 
-	$sql = "SELECT distinct tag from poststotags";
+	if(isset($_POST['post_id'])){
+		$post_id = $_POST['post_id'];
+	} else {
+		$post_id = NULL;
+	}
+
+	if(isset($post_id)){
+		$sql = "SELECT distinct tag from poststotags WHERE post_id = " . $post_id;
+	} else {
+		$sql = "SELECT distinct tag from poststotags";
+	}
 
 	$results = mysqli_query($conn, $sql);
 
