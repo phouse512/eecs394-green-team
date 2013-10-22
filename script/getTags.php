@@ -4,6 +4,7 @@
 	$hostname = "localhost"; 
 	$database_name = "victorab_325p1";
 
+
 	$conn = mysqli_connect($hostname, $username, $password, $database_name);
 
 	$sql = "SELECT distinct tag from poststotags";

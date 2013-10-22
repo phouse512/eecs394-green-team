@@ -5,6 +5,7 @@
 	$hostname = "localhost"; 
 	$database_name = "victorab_325p1";
 
+
 	$delete_id = $_POST['post_id'];
 
 	$conn = mysqli_connect($hostname, $username, $password, $database_name);
