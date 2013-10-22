@@ -37,6 +37,28 @@ function deletePost(postID) {
     });
 }
 
+function updatePost(postID, poster, postText, postColor){
+	$.ajax({
+		url: 'script/editing.php',
+		type: 'POST',
+		data: ({postID: postID,
+				poster: poster,
+				postText: postText,
+				postColor: postColor}),
+		success: function(data, textStatus, xhr){
+			if (data == "success"){
+				viewPosts();
+				$("#editModal").modal('hide');
+			} else {
+				console.log(data);
+			}
+		},
+		error: function(xhr, textStatus, errorThrown){
+			alert(textStatus);
+		}
+	});
+	
+}
 
 function clearModal(){
 	$("#myModal").modal('hide');
@@ -60,20 +82,13 @@ function saveNewPost(){
 	createPost(content, color, poster, tagArray);
 }
 
-function editPost(postID){
-$.ajax({
-        url: 'script/editing.php',
-        type: 'POST',
-        data: ({post_id: postID}),
-        success: function(data, textStatus, xhr) {
-        	if (data == "success"){
-        		console.log(data);
-        		viewPosts();
-        	} else {
-        		console.log(data);
-        	}
-        }
-    });
+function editPost(){
+	var postID = $("#edit-post-id").val();
+	var poster = $("#edit-poster").val();
+	var content = $("#edit-noteContent").val();
+	var color = $("#edit-color-select").val();
+
+	updatePost(postID, poster, content, color);
 }
 
 function viewPosts(){
@@ -116,6 +131,8 @@ function viewPosts(){
 			$("#noteSpace").on("click", ".editButton", function(event) {
 				var postNote = $(this).parent();
 				var color;
+				var postID = postNote.parent().attr("id");
+				$("#edit-post-id").val(postID);
 				$("#edit-poster").val(postNote.children(".noteFoot").children(".noteFooter").first().html());
 				$("#edit-noteContent").val(postNote.children(".noteText").html());
 				if(postNote.hasClass("blackNote")){
@@ -129,7 +146,7 @@ function viewPosts(){
 				}
 				$("#edit-color-select").val(color);
 				$("#edit-tags").val("");
-				getTags(postNote.parent().attr("id"), editModalTags);
+				getTags(postID, editModalTags);
 			});
 		},
 		error: function(xhr, textStatus, errorThrown) {

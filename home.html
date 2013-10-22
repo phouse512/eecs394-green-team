@@ -40,11 +40,23 @@
                     }
                 });
 
+                $("#edit-tags").keypress(function(event) {
+                    if(event.keyCode == 13){
+                        var text = '<button class="btn btn-xs tagButton">#' + $("#edit-tags").val() + '</button>';
+                        $("#edit-tagSpace").append(text);
+                        $("#edit-tags").val("");
+                    }
+                });
+
 
 
                 $("#tagSpace").on("click", ".tagButton", function() {
                     $(this).remove();
                 });
+
+                $("#edit-tagSpace").on("click", ".tagButton", function() {
+                    $(this).remove();
+                })
 
                 $("#myModal").on("hidden.bs.modal", function() {
                     $("#tagSpace").html("");
@@ -96,6 +108,7 @@
                         <h4 class="modal-title">Edit Note</h4>
                     </div>
                     <div class="modal-body">
+                        <input type="hidden" id="edit-post-id">
                         <div class="form-group">
                             <input type="poster" class="form-control" id="edit-poster" placeholder="posted by...">
                         </div>
