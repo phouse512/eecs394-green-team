@@ -14,6 +14,10 @@
 			$(document).ready(function() {
                 viewPosts();
                 getTags();
+                createTagSet = {};
+                editTagSet = {};
+                editAddTagSet = {};
+                editRemoveTagSet = {};
 
                 $("#createPost").on("click", function(){
                     saveNewPost();
@@ -33,18 +37,38 @@
 
                 $("#tags").keypress(function(event) {
                     if(event.keyCode == 13){
-                        var text = '<button class="btn btn-xs tagButton">#' + $("#tags").val() + '</button>';
-                        $("#tagSpace").append(text);
-                        $("#tags").val("");
+                        var tagText = $("#tags").val();
+                        if(!(tagText in createTagSet)){
+                            var text = '<button class="btn btn-xs tagButton">#' + tagText + '</button>';
+                            createTagSet[tagText] = "";
+                            $("#tagSpace").append(text);
+                            $("#tags").val("");
+                        }
                         console.log(text);
                     }
                 });
 
                 $("#edit-tags").keypress(function(event) {
                     if(event.keyCode == 13){
-                        var text = '<button class="btn btn-xs tagButton">#' + $("#edit-tags").val() + '</button>';
-                        $("#edit-tagSpace").append(text);
-                        $("#edit-tags").val("");
+                        var tagText = $("#edit-tags").val();
+                        var isOriginal = (tagText in editTagSet);
+                        var isNew = (tagText in editAddTagSet);
+                        var isDelete = (tagText in editRemoveTagSet);
+                        if(!isOriginal){
+                            if(!isNew){
+                                var text = '<button class="btn btn-xs tagButton">#' + tagText + '</button>';
+                                editAddTagSet[tagText] = "";
+                                $("#edit-tagSpace").append(text);
+                                $("#edit-tags").val("");
+                            }
+                        } else {
+                            if(isDelete){
+                                var text = '<button class="btn btn-xs tagButton">#' + tagText + '</button>';
+                                delete editRemoveTagSet[tagText];
+                                $("#edit-tagSpace").append(text);
+                                $("#edit-tags").val("");
+                            }
+                        }
                     }
                 });
 
@@ -55,12 +79,30 @@
                 });
 
                 $("#edit-tagSpace").on("click", ".tagButton", function() {
+                    var tagText = $(this).text().slice(1);
+                    if(tagText in editTagSet){
+                        editRemoveTagSet[tagText] = "";
+                    } else if(tagText in editAddTagSet){
+                        delete editAddTagSet[tagText];
+                    }
                     $(this).remove();
                 })
 
                 $("#myModal").on("hidden.bs.modal", function() {
                     $("#tagSpace").html("");
+                    createTagSet = {};
+                    $("#poster").val("");
+                    $("#noteContent").val("");
+                    $("#color-select").val(0);
+                    $("#tagSpace").html("");
+                    $("#tags").val("");
                 });
+
+                $("#editModal").on("hidden.bs.modal", function() {
+                    editTagSet = {};
+                    editAddTagSet = {};
+                    editRemoveTagSet = {};
+                })
             });
 
 		</script>

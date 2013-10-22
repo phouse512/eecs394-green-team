@@ -44,9 +44,12 @@ function updatePost(postID, poster, postText, postColor){
 		data: ({postID: postID,
 				poster: poster,
 				postText: postText,
-				postColor: postColor}),
+				postColor: postColor,
+				newTags: editAddTagSet,
+				deletedTags: editRemoveTagSet}),
 		success: function(data, textStatus, xhr){
 			if (data == "success"){
+				console.log("Successfully updated");
 				viewPosts();
 				$("#editModal").modal('hide');
 			} else {
@@ -62,11 +65,6 @@ function updatePost(postID, poster, postText, postColor){
 
 function clearModal(){
 	$("#myModal").modal('hide');
-	$("#poster").val("");
-	$("#noteContent").val("");
-	$("#color-select").val(1);
-	$("#tagSpace").html("");
-	$("#tags").val("");
 }
 
 function saveNewPost(){
@@ -87,6 +85,10 @@ function editPost(){
 	var poster = $("#edit-poster").val();
 	var content = $("#edit-noteContent").val();
 	var color = $("#edit-color-select").val();
+
+	console.log(editTagSet);
+	console.log(editAddTagSet);
+	console.log(editRemoveTagSet);
 
 	updatePost(postID, poster, content, color);
 }
@@ -240,6 +242,7 @@ function editModalTags(data){
 	var tagHTML = "";
 	$(data).find('tag').each(function() {
 		var tagText = $(this).text();
+		editTagSet[tagText] = "";
 		tagHTML += '<button class="btn btn-xs tagButton">#' + tagText + '</button>';
 	});
 	$("#edit-tagSpace").html(tagHTML);
