@@ -124,8 +124,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 
 .blackNote {
-	background: #000;
-	color: #c6d3cd;
+	background: #989898;
+	color: #fff;
 }
 
 .blueNote {
