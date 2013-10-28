@@ -14,9 +14,9 @@
 	}
 
 	if(isset($post_id)){
-		$sql = "SELECT distinct tag from poststotags WHERE post_id = " . $post_id;
+		$sql = "SELECT distinct tag from poststotags INNER JOIN posts on poststotags.post_id = posts.post_id WHERE poststotags.post_id = " . $post_id . " AND Archived = 0";
 	} else {
-		$sql = "SELECT distinct tag from poststotags";
+		$sql = "SELECT distinct tag from poststotags INNER JOIN posts on poststotags.post_id = posts.post_id WHERE Archived = 0";
 	}
 
 	$results = mysqli_query($conn, $sql);

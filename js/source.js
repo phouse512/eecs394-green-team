@@ -38,6 +38,11 @@ function deletePost(postID) {
 }
 
 function updatePost(postID, poster, postText, postColor){
+	if(!$.isEmptyObject(editAddTagSet) || !$.isEmptyObject(editRemoveTagSet)){
+		if(tagPopoverMap[postID]){
+			delete tagPopoverMap[postID];
+		}
+	}
 	$.ajax({
 		url: 'script/editing.php',
 		type: 'POST',
@@ -115,13 +120,13 @@ function viewPosts(){
 				var timestamp = $(this).find('timestamp').text();
 				var post_id = $(this).find('post_id').text();
 				if(color_class.localeCompare("0") == 0){
-					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blackNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blackNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
 				} else if(color_class.localeCompare("1") == 0){
-					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blueNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote blueNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
 				} else if(color_class.localeCompare("2") == 0){
-					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote redNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote redNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
 				} else if(color_class.localeCompare("3") == 0){
-					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote greenNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="postNote greenNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
 				}
 			});
 			$("#noteSpace").html(outputHTML);
@@ -150,6 +155,49 @@ function viewPosts(){
 				$("#edit-tags").val("");
 				getTags(postID, editModalTags);
 			});
+
+			$("#noteSpace").on("click", ".infoButton", function(event) {
+				var postNote = $(this).parent();
+				var postID = postNote.parent().attr("id");
+				console.log(postID);
+			});
+
+			$("#noteSpace").on("click", ".noteFoot", function() {
+                var postNote = $(this).parent();
+                var footHeight = $(this).height();
+                var postHeight = postNote.height();
+                var textHeight = postNote.find(".noteText").height();
+                var totalHeight = textHeight + footHeight;
+                var pad = 2*parseInt(postNote.css("padding"), 10);
+                var border = 2*parseInt(postNote.css("border-width"), 10);
+                var expandHeight = totalHeight + pad + border;
+                console.log(pad);
+                console.log(border);
+                console.log("footHeight: " + footHeight + " postHeight: " + postHeight + " textHeight: " + textHeight + " totalHeight: " + totalHeight);
+
+                if(postHeight < totalHeight){
+                    postNote.animate({
+                        height: expandHeight
+                    }, 300);
+                } else if(postHeight > 200 - pad - border){
+                    postNote.animate({
+                        height: 200
+                    }, 300);
+                } 
+            });
+
+			$(".postViewer").popover({
+                placement: "bottom",
+                selector: ".infoButton",
+                trigger: "click",
+                content: function(){
+                    console.log($(this).parent().parent().attr("id"));
+                    var tagHTML = getTagDisplay($(this));
+                    return tagHTML;
+                }
+            });
+
+			getTags();
 		},
 		error: function(xhr, textStatus, errorThrown) {
 			alert(textStatus + errorThrown);
@@ -179,21 +227,49 @@ function sortTagPosts(){
 	return sortString;
 }
 
-/*
-function getTags(){
-
-	$.ajax({
-		url: 'script/getTags.php',
-		type: 'GET',
-		success: function(data, textStatus, xhr) {
-			displayTags(data);
-		},
-		error: function(xhr, textStatus, errorThrown) {
-			alert(errorThrown);
+function getTagDisplay(info)
+{
+	var postNote = info.parent();
+	var postID = postNote.parent().attr("id");
+	console.log(typeof(postID));
+	if(tagPopoverMap[postID]){
+		console.log("Entry exists");
+		var popover = postNote.find(".popover").find(".popover-content");
+		var tagHTML = "";
+		var tagArray = tagPopoverMap[postID];
+		console.log(tagArray);
+		for(var i = 0; i < tagArray.length; i++){
+			var tagText = tagArray[i];
+			tagHTML += ' #' + tagText;
 		}
-	});
+		console.log(tagHTML);
+		console.log(popover);
+		return tagHTML;
+	} else {
+		console.log("Entry does not exist");
+		getTags(postID, function(data){
+			fetchTagDisplay(postNote, data);
+		});
+		return "Loading..."
+	}
 }
-*/
+
+function fetchTagDisplay(postNote, data)
+{
+	var postID = postNote.parent().attr("id");
+	var popover = postNote.find(".popover").find(".popover-content");
+	var tagArray = [];
+	var tagHTML = "";
+	$(data).find('tag').each(function() {
+		var tagText = $(this).text();
+		tagArray.push(tagText);
+		tagHTML += ' #' + tagText;
+	});
+	tagPopoverMap[postID] = tagArray;
+	console.log(popover);
+	popover.html(tagHTML);
+}
+
 function getTags(postID, callback){
 	if(postID){
 		$.ajax({

@@ -18,6 +18,7 @@
                 editTagSet = {};
                 editAddTagSet = {};
                 editRemoveTagSet = {};
+                tagPopoverMap = {};
 
                 $("#createPost").on("click", function(){
                     saveNewPost();
@@ -86,7 +87,7 @@
                         delete editAddTagSet[tagText];
                     }
                     $(this).remove();
-                })
+                });
 
                 $("#myModal").on("hidden.bs.modal", function() {
                     $("#tagSpace").html("");
@@ -102,7 +103,11 @@
                     editTagSet = {};
                     editAddTagSet = {};
                     editRemoveTagSet = {};
-                })
+                });
+
+                
+
+
             });
 
 		</script>
@@ -123,7 +128,7 @@
         <div class="row">
             <div class="col-xs-12 newPost">
 				<div class="col-lg-3">
-					<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg footerSubmit">New Note</a>
+					<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg footerSubmit"><span class="glyphicon glyphicon-plus"></span></a>
                     <a data-toggle="modal" href="#tagModal" class="btn btn-primary btn-lg footerSubmit">Sort by Tags</a>
 				</div>
                 <div class="col-lg-4" id="sortSelectors">
