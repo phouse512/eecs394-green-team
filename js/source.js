@@ -222,8 +222,11 @@ function sortColorPosts(){
 
 function sortTagPosts(){
 	var sortString = new Array();
+	checkedTags = {};
 	$("#tagBody input:checked").each(function(){
-		sortString.push($(this).attr("val"));
+		var text = $(this).attr("val");
+		sortString.push(text);
+		checkedTags[text] = "";
 	});
 
 	console.log(sortString);
@@ -311,7 +314,11 @@ function displayTags(data){
 	$(data).find('tag').each(function() {
 		var tagText = $(this).text();
 		console.log(tagText);
-		outputHTML += '<div class="checkbox"><label><input val="' + tagText + '" type="checkbox">' + tagText + '</label></div>';
+		outputHTML += '<div class="checkbox"><label><input val="' + tagText + '" type="checkbox"';
+		if(tagText in checkedTags){
+			outputHTML += ' checked';
+		}
+		outputHTML += '>' + tagText + '</label></div>';
 	});
 
 	$("#tagBody").html(outputHTML);

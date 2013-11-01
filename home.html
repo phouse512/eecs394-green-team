@@ -20,6 +20,7 @@
                 editAddTagSet = {};
                 editRemoveTagSet = {};
                 tagPopoverMap = {};
+                checkedTags = {};
                 tinymce.init({selector:'textarea'});
 
                 $("#createPost").on("click", function(){
@@ -29,6 +30,14 @@
 
                 $("#sortSelectors").change(function () {
                     viewPosts();
+                });
+
+                $("#tags").change(function (){
+
+                });
+
+                $("#edit-tags").change(function (){
+
                 });
 
                 $("#editPost").on("click", function(){
@@ -165,7 +174,7 @@
                         <div class="form-group">
                             <textarea class="form-control" id="edit-noteContent" rows="3" placeholder="write note here.."></textarea>
                         </div>
-                        <select class="form-control form-group" id="edit-color-select">
+                        <select class="form-control form-group" id="edit-color-select" value="3">
                             <option value="0">Urgent</option>
                             <option value="1">High</option>
                             <option value="2">Medium</option>
@@ -198,7 +207,7 @@
                         <div class="form-group">
                             <textarea class="form-control" id="noteContent" rows="3" placeholder="write note here.."></textarea>
                         </div>
-                        <select class="form-control form-group" id="color-select">
+                        <select class="form-control form-group" id="color-select" value="3">
                         <option value="0">Urgent</option>
                             <option value="1">High</option>
                             <option value="2">Medium</option>

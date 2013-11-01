@@ -18,7 +18,7 @@
 	}
 
 	if(isset($sortTags)){
-		$tag_query = "(";
+		$tag_query = "";
 		foreach($sortTags as $key => $tag){
 			$escaped_tag = mysqli_real_escape_string($connection, $tag);
 			$is_last = last($sortTags, $key);
@@ -27,12 +27,12 @@
 				$tag_query .= ", ";
 			}
 		}
-		$tag_query .= ")";
 		$query = "SELECT DISTINCT posts.post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime, Archived FROM posts INNER JOIN poststotags ON posts.post_id=poststotags.post_id AND tag in (" . $tag_query . ") AND Archived='0' AND post_color IN " . $sortColors . " ORDER BY post_id DESC";
 	} else {
 		$query = "SELECT post_id, post_text, post_color, poster, TIME_FORMAT(create_time, '%h:%i %p') AS TheTime, Archived FROM posts WHERE Archived='0' AND post_color IN " . $sortColors . " ORDER BY post_id DESC";
 	}
 
+	
 	$results = mysqli_query($connection, $query);
 
 	$xml = new XMLWriter();
