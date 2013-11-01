@@ -74,21 +74,21 @@ function clearModal(){
 
 function saveNewPost(){
 	var poster = $("#poster").val();
-	var content = $("#noteContent").val();
+	var content = tinyMCE.get('noteContent').getContent();
 	var color = $("#color-select").val();
 
 	var tagArray = new Array();
 	$("#tagSpace .tagButton").each(function() {
 		tagArray.push($(this).html().slice(1));
 	})
-
+	console.log(content);
 	createPost(content, color, poster, tagArray);
 }
 
 function editPost(){
 	var postID = $("#edit-post-id").val();
 	var poster = $("#edit-poster").val();
-	var content = $("#edit-noteContent").val();
+	var content = tinyMCE.get('edit-noteContent').getContent();
 	var color = $("#edit-color-select").val();
 
 	console.log(editTagSet);
@@ -121,13 +121,13 @@ function viewPosts(){
 				var post_id = $(this).find('post_id').text();
 
 				if(color_class.localeCompare("3") == 0){
-					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3 noteWrapper"><div class="postNote blackNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3 noteWrapper"><div class="postNote blackNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 col-md-9 col-sm-9 col-xs-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
 				} else if(color_class.localeCompare("2") == 0){
-					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3 noteWrapper"><div class="postNote blueNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3 noteWrapper"><div class="postNote blueNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 col-md-9 col-sm-9 col-xs-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
 				} else if(color_class.localeCompare("0") == 0){
-					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3 noteWrapper"><div class="postNote redNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3 noteWrapper"><div class="postNote redNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 col-md-9 col-sm-9 col-xs-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
 				} else if(color_class.localeCompare("1") == 0){
-					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3 noteWrapper"><div class="postNote greenNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
+					outputHTML += '<div id="' + post_id + '"  class="col-xs-12 col-sm-6 col-md-4 col-lg-3 noteWrapper"><div class="postNote greenNote"><button class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button><a data-toggle="modal" href="#editModal" class="btn btn-default btn-xs editButton"><span class="glyphicon glyphicon-edit"></span></a><button class="btn btn-default btn-xs editButton infoButton"><span class="glyphicon glyphicon-tag"></span></button><div class="row col-lg-9 col-md-9 col-sm-9 col-xs-9 noteFoot"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + poster + '</div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 noteFooter">' + timestamp + '</div></div><div class="noteText">' + text + '</div></div></div>';
 				}
 			});
 			$("#noteSpace").html(outputHTML);
@@ -142,6 +142,7 @@ function viewPosts(){
 				var postID = postNote.parent().attr("id");
 				$("#edit-post-id").val(postID);
 				$("#edit-poster").val(postNote.children(".noteFoot").children(".noteFooter").first().html());
+				tinyMCE.get('edit-noteContent').setContent(postNote.children(".noteText").html());
 				$("#edit-noteContent").val(postNote.children(".noteText").html());
 				if(postNote.hasClass("blackNote")){
 					color = 3;
@@ -222,10 +223,10 @@ function sortColorPosts(){
 function sortTagPosts(){
 	var sortString = new Array();
 	$("#tagBody input:checked").each(function(){
-		sortString.push("'" + $(this).attr("val") + "'");
+		sortString.push($(this).attr("val"));
 	});
 
-	sortString = sortString.join(',');
+	console.log(sortString);
 	return sortString;
 }
 

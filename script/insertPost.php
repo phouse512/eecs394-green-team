@@ -17,6 +17,8 @@
 		$tags = NULL;
 	}
 
+	$post_text = mysqli_real_escape_string($conn, $post_text);
+	$poster = mysqli_real_escape_string($conn, $poster);
 	
 	
 	$sql = "INSERT INTO posts (post_text, post_color, poster) VALUES('" . $post_text . "', '" . $post_color . "', '" . $poster . "')";
@@ -25,8 +27,9 @@
 		$tag_query = "";
 		if(isset($tags)){
 			foreach($tags as $key => $tag){
+				$escaped_tag = mysqli_real_escape_string($conn, $tag);
 				$is_last = last($tags, $key);
-				$tag_query = $tag_query . "(" . $post_id . ", '" . $tag . "')";
+				$tag_query = $tag_query . "(" . $post_id . ", '" . $escaped_tag . "')";
 				if(!$is_last){
 					$tag_query = $tag_query . ", ";
 				}

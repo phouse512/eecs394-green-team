@@ -10,6 +10,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/source.js"></script>
+        <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 		<script>
 			$(document).ready(function() {
                 viewPosts();
@@ -19,9 +20,11 @@
                 editAddTagSet = {};
                 editRemoveTagSet = {};
                 tagPopoverMap = {};
+                tinymce.init({selector:'textarea'});
 
                 $("#createPost").on("click", function(){
                     saveNewPost();
+                    console.log(tinyMCE.get('noteContent').getContent());
                 });
 
                 $("#sortSelectors").change(function () {
@@ -93,8 +96,8 @@
                     $("#tagSpace").html("");
                     createTagSet = {};
                     $("#poster").val("");
-                    $("#noteContent").val("");
-                    $("#color-select").val(0);
+                    tinyMCE.get('noteContent').setContent("");
+                    $("#color-select").val(3);
                     $("#tagSpace").html("");
                     $("#tags").val("");
                 });

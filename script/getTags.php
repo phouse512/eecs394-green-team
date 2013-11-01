@@ -31,7 +31,7 @@
 
 	while($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 		$xml->startElement('tag');
-		$xml->writeRaw($row['tag']);
+		$xml->writeRaw(htmlspecialchars($row['tag']));
 		$xml->endElement();
 	}
 

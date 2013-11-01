@@ -19,6 +19,9 @@
 	if(isset($_POST['deletedTags'])){
 		$remove_tags = $_POST['deletedTags'];
 	}
+
+	$post_text = mysqli_real_escape_string($conn, $post_text);
+	$poster = mysqli_real_escape_string($conn, $poster);
 	
 	
 	$sql = "UPDATE posts SET poster = '" . $poster . "', post_text = '" . $post_text . "', post_color = '" . $post_color . "' WHERE post_id = " . $post_id;
@@ -29,8 +32,9 @@
 			$sql = "INSERT INTO poststotags (post_id, tag) values ";
 			$tag_query = "";
 			foreach($add_tags as $key => $value){
+				$escaped_tag = mysqli_real_escape_string($conn, $key);
 				$is_last = last($add_tags, $key);
-				$tag_query .= "(" . $post_id . ", '" . $key . "')";
+				$tag_query .= "(" . $post_id . ", '" . $escaped_tag . "')";
 				if(!$is_last){
 					$tag_query = $tag_query . ", ";
 				}
@@ -41,8 +45,9 @@
 					$sql = "DELETE FROM poststotags WHERE post_id = " . $post_id . " AND tag IN (";
 					$tag_query = "";
 					foreach($remove_tags as $key => $value){
+						$escaped_tag = mysqli_real_escape_string($conn, $key);
 						$is_last = last($remove_tags, $key);
-						$tag_query .= "'" . $key . "'";
+						$tag_query .= "'" . $escaped_tag . "'";
 						if(!$is_last){
 							$tag_query = $tag_query . ", ";
 						}
@@ -63,8 +68,9 @@
 			$sql = "DELETE FROM poststotags WHERE post_id = " . $post_id . " AND tag IN (";
 			$tag_query = "";
 			foreach($remove_tags as $key => $value){
+				$escaped_tag = mysqli_real_escape_string($conn, $key);
 				$is_last = last($remove_tags, $key);
-				$tag_query .= "'" . $key . "'";
+				$tag_query .= "'" . $escaped_tag . "'";
 				if(!$is_last){
 					$tag_query = $tag_query . ", ";
 				}
